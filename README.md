@@ -1,10 +1,6 @@
-# Examen BentoML
+## Examen BentoML Markus Fuchs
 
-Ce repertoire contient l'architecture basique afin de rendre l'évaluation pour l'examen BentoML.
-
-Vous êtes libres d'ajouter d'autres dossiers ou fichiers si vous jugez utile de le faire.
-
-Voici comment est construit le dossier de rendu de l'examen:
+Folder structure: 
 
 ```bash       
 ├── examen_bentoml          
@@ -13,16 +9,39 @@ Voici comment est construit le dossier de rendu de l'examen:
 │   │   └── raw           
 │   ├── models      
 │   ├── src       
+│   ├── bentofile.yaml
+│   ├── bento_image.tar
 │   └── README.md
 ```
 
-Afin de pouvoir commencer le projet vous devez suivre les étapes suivantes:
+## Commands
 
-- Forker le projet sur votre compte github
+##### Build the Bento
 
-- Cloner le projet sur votre machine
+```bash
+bentoml build
+```
+##### Serve the Bento
 
-- Récuperer le jeu de données à partir du lien suivant: [Lien de téléchargement]( https://datascientest.s3-eu-west-1.amazonaws.com/examen_bentoml/admissions.csv)
+```bash
+cd src
+bentoml serve service:rf_service
+```
 
+##### Load the docker image into the local docker daemon
 
-Bon travail!
+```bash
+docker load -i bento_image.tar
+```
+
+##### Run the docker container
+
+```bash
+docker run --rm -p 3000:3000 admission_rf_service:vmvkd4rnbwbdxjgr
+```
+
+##### Run unit tests (start the docker container first)
+
+```bash
+pytest -v --disable-warnings
+```

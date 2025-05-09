@@ -1,0 +1,22 @@
+service: "src.service:rf_service"
+description: "Random Forest Classifier Service for predicting admissions"
+
+labels:
+  owner: "MarkusFuchs68"
+  project: "admission_prediction"
+
+include:
+  - src/
+  - data/
+
+python:
+  packages:
+    - numpy
+    - pandas
+    - scikit-learn
+    - bentoml
+    - pydantic
+    - requests
+    - pyjwt
+    - starlette
+    - pytest
